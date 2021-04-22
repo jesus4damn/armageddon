@@ -2,6 +2,7 @@ const path = require('path')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const autoprefixer = require('autoprefixer')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const isProd = process.env.NODE_ENV === 'production'
@@ -15,7 +16,8 @@ module.exports = {
   entry: ['@babel/polyfill', './index.tsx'],
   output: {
     filename: filename('js'),
-    path: path.resolve(__dirname, 'docs')
+    path: path.resolve(__dirname, 'docs'),
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
@@ -26,7 +28,9 @@ module.exports = {
   devtool: isDev ? 'source-map' : false,
   devServer: {
     port: 3000,
-    hot: isDev
+    hot: isDev,
+    publicPath:'/',
+    historyApiFallback: true,
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -57,14 +61,39 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.(sc|sa|c)?ss$/,
+        exclude: '/node_modules/',
         use: [
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
-            loader: MiniCssExtractPlugin.loader,
+            loader: 'css-loader',
+            options: {
+              sourceMap: isDev
+            }
           },
-          'css-loader',
-          'sass-loader'
-        ],
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [
+                    'postcss-preset-env',
+                    {
+                      browsers: 'last 4 versions'
+                    },
+                  ],
+                ]
+              },
+              sourceMap: isDev
+            }
+          },
+          {
+            loader: 'sass-loader',
+                options: {
+                sourceMap: isDev
+              }
+          }
+        ]
       },
       {
         test: /\.(js|jsx)?$/,

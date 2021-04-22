@@ -1,4 +1,4 @@
-import axios, {AxiosResponse} from "axios";
+import axios, {AxiosResponse} from "axios"
 
 export const API = {
     baseUrl: '',
@@ -10,4 +10,4 @@ export const API = {
     get(path: string): Promise<AxiosResponse> {
         return axios.get(this.baseUrl + path, this.config)
     }
-};
+}
