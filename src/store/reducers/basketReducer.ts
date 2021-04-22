@@ -1,9 +1,9 @@
-import {IBasket} from "../../constants/types/stateInterfaces";
-import {BasketActions} from "../../constants/types/types";
+import {IBasket} from "../../constants/types/stateInterfaces"
+import {BasketActions} from "../../constants/types/types"
 
 const initialState: IBasket = {
     list: []
-};
+}
 
 export default function basketReducer(
     state=initialState,
@@ -12,6 +12,6 @@ export default function basketReducer(
 
     switch (action.type) {
         default:
-            return state;
+            return state
     }
 }
