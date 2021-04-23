@@ -137,6 +137,7 @@ const Dino = styled.div`
     @media (max-width: 650px) {
         transform: scale(-1,1);
         bottom: 246px;
+        left: inherit;
         right: 16px;
     }
 `

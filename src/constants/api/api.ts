@@ -1,6 +1,6 @@
 import axios, {AxiosResponse} from "axios"
 
-export const START_LINK = 'http://www.neowsapp.com/rest/v1/neo/browse?page=0&size=10&api_key=E9pMitzwMFuDNh4ElHuYpfoq8IMCBjsYEcsBsydh'
+export const START_LINK = 'https://www.neowsapp.com/rest/v1/neo/browse?page=0&size=10&api_key=E9pMitzwMFuDNh4ElHuYpfoq8IMCBjsYEcsBsydh'
 
 export const API = {
     baseUrl: 'https://api.nasa.gov',
