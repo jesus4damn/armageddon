@@ -5,7 +5,7 @@ import styled from "styled-components"
 const Container = styled.button`
     padding: 14px 16px;
     background: #186DD6;
-    border:none;
+    border: none;
     border-radius: 24px;
     font-size: 16px;
     line-height: 20px; 
@@ -13,9 +13,9 @@ const Container = styled.button`
     cursor:pointer;
 `
 
-const Button: React.FC<any> = ({children}:{children:React.ReactNode}) => {
+const Button: React.FC<any> = ({children, onClick}:{children:React.ReactNode, onClick:() => void}) => {
     return (
-        <Container>
+        <Container onClick={onClick}>
             {children}
         </Container>
     )

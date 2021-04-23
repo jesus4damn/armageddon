@@ -1,4 +1,5 @@
 import React from "react"
+import { useHistory, useLocation } from "react-router-dom"
 import styled from "styled-components"
 
 const Container = styled.div`
@@ -60,15 +61,27 @@ const Link = styled.a<{marginRight?:number, active?: boolean}>`
 
 
 const Header: React.FC<any> = () => {
+    const history = useHistory()
+    const location = useLocation()
+
     return (
         <Container>
             <Left>
-                <MainHeader>ARMAGGEDON V</MainHeader>
+                <MainHeader>ARMAGEDDON V</MainHeader>
                 <Text>Сервис мониторинга и уничтожения астероидов, опасно подлетающих к Земле.</Text>
             </Left>
             <Right>
-                <Link marginRight={24} active>Астероиды</Link>
-                <Link>Уничтожение</Link>
+                <Link 
+                    marginRight={24} 
+                    active={location.pathname === '/' ||location.pathname === ''} 
+                    onClick={() => history.push("/")}>
+                    Астероиды
+                </Link>
+                <Link active={location.pathname === '/destroy'}
+                    onClick={() => history.push("/destroy")}
+                    >
+                    Уничтожение
+                </Link>
             </Right>
         </Container>
     )
