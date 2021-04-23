@@ -1,4 +1,4 @@
-import React from "react";
+import React, { VoidFunctionComponent } from "react";
 import styled from "styled-components";
 
 const HiddenCheckbox = styled.input.attrs({
@@ -37,7 +37,7 @@ const Label = styled.span`
     margin-top: 3px;
 `;
 
-const Checkbox = ({value, label, ...props}: {value: boolean, label?: string}) => (
+const Checkbox = ({value, label, onClick, ...props}: {value: boolean, label?: string, onClick: () => void}) => (
     <div className="position-relative d-flex align-items-center" style={{cursor:'pointer'}}>
         <CustomCheckbox checked={value} htmlFor={`checkbox`}>
             {
@@ -46,8 +46,8 @@ const Checkbox = ({value, label, ...props}: {value: boolean, label?: string}) =>
                     : ''
             }
         </CustomCheckbox>
-        <HiddenCheckbox id={`checkbox`} checked={value} {...props} />
-        {label && <Label>{label}</Label>}
+        <HiddenCheckbox id={`checkbox`} checked={value} onClick={onClick} readOnly {...props} />
+        {label && <Label onClick={onClick}>{label}</Label>}
     </div>
 )
 

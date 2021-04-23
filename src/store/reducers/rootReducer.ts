@@ -1,8 +1,8 @@
 import { combineReducers } from "redux"
-import basketReducer from "./basketReducer"
+import destroyReducer from "./destroyReducer"
 
 export const rootReducer = combineReducers({
-    basket: basketReducer
+    destroy: destroyReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>
