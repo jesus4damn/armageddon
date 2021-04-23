@@ -16,8 +16,7 @@ module.exports = {
   entry: ['@babel/polyfill', './index.tsx'],
   output: {
     filename: filename('js'),
-    path: path.resolve(__dirname, 'docs'),
-    publicPath: '/'
+    path: path.resolve(__dirname, 'examples/dist')
   },
   resolve: {
     extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
@@ -45,12 +44,12 @@ module.exports = {
       patterns: [
         {
           from: path.resolve(__dirname, 'src/assets/favicon.ico'),
-          to: path.resolve(__dirname, 'docs/assets')
+          to: path.resolve(__dirname, 'examples/dist/assets')
         },
         {
           context: path.resolve(__dirname),
           from: path.resolve(__dirname, 'src/assets/manifest.json'),
-          to: path.resolve(__dirname, 'docs/assets')
+          to: path.resolve(__dirname, 'examples/dist/assets')
         }
       ],
     }),
